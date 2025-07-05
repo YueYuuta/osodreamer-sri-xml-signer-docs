@@ -1,0 +1,370 @@
+---
+import DocsLayout from "../../../layouts/Layout.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+---
+
+<DocsLayout title="Modelo de datos ">
+  <section class="mb-12 text-center max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold text-white mb-3">Modelo de datos</h1>
+    <p class="text-zinc-400 text-base">
+      Este es el contrato de datos usado por la función
+      <code>generateXmlInvoice(...)</code> para generar comprobantes tipo
+      <strong>Factura</strong> válidos para el SRI.
+    </p>
+  </section>
+
+  <section class="mb-24 w-full px-4">
+    <div
+      class="bg-zinc-900 border border-zinc-800 p-6 sm:p-8 rounded-2xl max-w-3xl mx-auto shadow-md"
+    >
+      <div class="mb-12">
+        <h2 class="text-lg font-semibold text-white mb-4">
+          Modelo de la factura
+        </h2>
+        <CodeBlock
+          language="ts"
+          code={`class InfoTributariaModel {
+  ambiente: ENV_ENUM;
+  razonSocial: string;
+  nombreComercial?: string;
+  ruc: string;
+  estab: string;
+  ptoEmi: string;
+  secuencial: string;
+  dirMatriz: string;
+  agenteRetencion?: string;
+  contribuyenteRimpe?: CONTRIBUYENTE_RIMPE_ENUM;
+}
+
+class TotalImpuestoModel {
+  codigo: TAX_CODE_ENUM;
+  codigoPorcentaje: number;
+  baseImponible: number;
+  valor: number;
+  descuentoAdicional?: number;
+}
+
+class TotalConImpuestosModel {
+  totalImpuesto: TotalImpuestoModel[];
+}
+
+class PagoModel {
+  formaPago: PAYMENT_METHOD_CODE_ENUM;
+  total: number;
+  plazo?: number;
+  unidadTiempo?: string;
+}
+
+class PagosModel {
+  pago: PagoModel[];
+}
+
+class InfoFacturaModel {
+  fechaEmision: Date;
+  dirEstablecimiento: string;
+  contribuyenteEspecial?: string;
+  obligadoContabilidad?: OBLIGADO_CONTABILIDAD_ENUM;
+  tipoIdentificacionComprador: IDENTIFICATION_CODE_ENUM;
+  guiaRemision?: string;
+  razonSocialComprador: string;
+  identificacionComprador: string;
+  direccionComprador?: string;
+  totalSinImpuestos: number;
+  totalDescuento: number;
+  totalConImpuestos: TotalConImpuestosModel;
+  propina: number;
+  importeTotal: number;
+  moneda?: string;
+  pagos: PagosModel;
+  valorRetIva?: number;
+  valorRetRenta?: number;
+}
+
+class DetAdicionalModel {
+  nombre: string;
+  valor: string;
+}
+
+class ImpuestoDetalleModel {
+  codigo: TAX_CODE_ENUM;
+  codigoPorcentaje: number;
+  tarifa: number;
+  baseImponible: number;
+  valor: number;
+}
+
+class DetallesAdicionalesModel {
+  detAdicional: DetAdicionalModel[];
+}
+
+class ImpuestosModel {
+  impuesto: ImpuestoDetalleModel[];
+}
+
+class DetalleModel {
+  codigoPrincipal: string;
+  codigoAuxiliar?: string;
+  descripcion: string;
+  cantidad: number;
+  precioUnitario: number;
+  descuento: number;
+  precioTotalSinImpuesto: number;
+  detallesAdicionales?: DetallesAdicionalesModel;
+  impuestos: ImpuestosModel;
+}
+
+class CampoAdicionalModel {
+  nombre: string;
+  value: string;
+}
+
+class InfoAdicionalModel {
+  campoAdicional: CampoAdicionalModel[];
+}
+
+class DetallesModel {
+  detalle: DetalleModel[];
+}
+
+class RetencionModel {
+  codigo: IMPUESTO_A_RETENER_ENUM;
+  codigoPorcentaje: CODIGO_RETENCION_ENUM;
+  tarifa: number;
+  valor: number;
+}
+
+class RetencionesModel {
+  retencion: RetencionModel[];
+}
+
+class ComprobanteModel {
+  infoTributaria: InfoTributariaModel;
+  infoFactura: InfoFacturaModel;
+  detalles: DetallesModel;
+  retenciones?: RetencionesModel;
+  infoAdicional?: InfoAdicionalModel;
+}
+type ComprobanteType = InstanceType<typeof ComprobanteModel>;`}
+        />
+      </div>
+
+      <hr class="my-8 border-zinc-700" />
+
+      <div>
+        <h2 class="text-lg font-semibold text-white mb-4">Enums</h2>
+        <CodeBlock
+          language="ts"
+          code={`enum ENV_ENUM {
+  TEST = 1,
+  PROD = 2,
+}
+enum TAX_CODE_ENUM {
+  VAT = 2,
+  ICE = 3,
+  IRBPNR = 5,
+}
+enum CONTRIBUYENTE_RIMPE_ENUM {
+  RIMPE_GENERAL = "CONTRIBUYENTE RÉGIMEN RIMPE",
+  RIMPE_POPULAR = "CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE",
+}
+enum OBLIGADO_CONTABILIDAD_ENUM {
+  SI = "SI",
+  NO = "NO",
+}
+enum PAYMENT_METHOD_CODE_ENUM {
+  SIN_UTILIZACION_DEL_SISTEMA_FINANCIERO = "01",
+  COMPENSACION_DE_DEUDAS = "15",
+  TARJETA_DE_DEBITO = "16",
+  DINERO_ELECTRONICO = "17",
+  TARJETA_PREPAGO = "18",
+  TARJETA_DE_CREDITO = "19",
+  OTROS_CON_SISTEMA_FINANCIERO = "20",
+  ENDOSO_DE_TITULOS = "21",
+}
+enum IDENTIFICATION_CODE_ENUM {
+  RUC = "04",
+  CEDULA = "05",
+  PASAPORTE = "06",
+  CONSUMIDOR_FINAL = "07",
+  EXTERIOR = "08",
+}
+enum CODIGO_RETENCION_ENUM {
+  IVA_CIENTO_POR_CIENTO_RESOLUCION = 3,
+  IVA_DOCE_POR_CIENTO_PRESUNTIVO_EDITORES = 4,
+  IVA_CIENTO_POR_CIENTO_DISTRIBUIDORES = 5,
+  IVA_CIENTO_POR_CIENTO_VOCEADORES = 6,
+  RENTA_DOS_POR_MIL = 327,
+  RENTA_TRES_POR_MIL = 328,
+}
+enum IMPUESTO_A_RETENER_ENUM {
+  IVA_PRESUNTIVO_Y_RENTA = 4,
+}`}
+        />
+      </div>
+      <hr class="my-8 border-zinc-700" />
+
+      <div>
+        <h2 class="text-lg font-semibold text-white mb-4">
+          Respuesta de <code>generateXmlInvoice(...)</code>
+        </h2>
+
+        <p class="text-sm text-zinc-400 mb-4">
+          Esta función devuelve una promesa con el XML generado como cadena, y
+          además el objeto convertido a JSON con la estructura del comprobante.
+        </p>
+
+        <CodeBlock
+          language="ts"
+          filename="ResponseGenerateXmlModel.ts"
+          code={`interface ResponseGenerateXmlModel {
+  generatedXml: string; // XML como string, listo para firmar o enviar
+  invoiceJson: InvoiceSriBuilder; // Estructura JSON equivalente al XML
+}
+
+ interface InvoiceSriBuilder {
+  factura: FacturaInfo;
+}
+
+ interface FacturaInfo {
+  $: {
+    id: string;
+    version: string;
+  };
+  infoTributaria: InfoTributaria;
+  infoFactura: InfoFactura;
+  detalles: Detalles;
+
+  retenciones: Retenciones;
+
+  infoAdicional: InfoAdicional;
+}
+ class Retenciones {
+  retencion: Retencion[];
+}
+ class Retencion {
+  codigo: IMPUESTO_A_RETENER_ENUM;
+
+  codigoPorcentaje: CODIGO_RETENCION_ENUM;
+
+  tarifa: string; //TODO: TIENE QUE TENER MAX 4 2 ENTEROS Y DOS DECIMALES
+
+  valor: string;
+}
+ interface InfoTributaria {
+  ambiente: number;
+  tipoEmision: string;
+  razonSocial: string;
+  nombreComercial: string;
+  ruc: string;
+  claveAcceso: string;
+  codDoc: string;
+  estab: string;
+  ptoEmi: string;
+  secuencial: string;
+  dirMatriz: string;
+  contribuyenteRimpe?: string;
+  agenteRetencion?: string;
+}
+
+ interface InfoFactura {
+  fechaEmision: string;
+  dirEstablecimiento: string;
+  contribuyenteEspecial?: string;
+  obligadoContabilidad?: "SI" | "NO";
+  comercioExterior?: string;
+  incoTermFactura?: string;
+  lugarIncoTerm?: string;
+  paisOrigen?: string;
+  puertoEmbarque?: string;
+  puertoDestino?: string;
+  paisDestino?: string;
+  paisAdquisicion?: string;
+  tipoIdentificacionComprador: string;
+  guiaRemision?: string;
+  razonSocialComprador: string;
+  identificacionComprador: string;
+  direccionComprador: string;
+  totalSinImpuestos: string;
+  incoTermTotalSinImpuestos?: string;
+  totalDescuento: string;
+
+  totalConImpuestos: {
+    totalImpuesto: TotalImpuesto[];
+  };
+  propina: string;
+  fleteInternacional?: number;
+  seguroInternacional?: number;
+  gastosAduaneros?: number;
+  gastosTransporteOtros?: number;
+  importeTotal: string;
+  moneda: string;
+  pagos: { pago: Pago[] };
+
+  valorRetIva?: string;
+
+  valorRetRenta?: string;
+}
+ interface TotalImpuesto {
+  codigo: TAX_CODE_ENUM;
+  codigoPorcentaje: string;
+  baseImponible: string;
+  valor: string;
+  descuentoAdicional?: string;
+}
+
+ interface Detalles {
+  detalle: Detalle[];
+}
+
+ interface Pago {
+  formaPago: string;
+  total: string;
+  plazo: number;
+  unidadTiempo: string;
+}
+
+ interface Detalle {
+  codigoPrincipal: string;
+  codigoAuxiliar: string;
+  descripcion: string;
+  cantidad: string;
+  precioUnitario: string;
+  descuento: string;
+  precioTotalSinImpuesto: string;
+  detallesAdicionales?: {
+    detAdicional: DetAdicional[];
+  };
+  impuestos: {
+    impuesto: ImpuestoDetalle[];
+  };
+}
+
+ interface DetAdicional {
+  $: {
+    nombre: string;
+    valor: string;
+  };
+}
+
+ interface ImpuestoDetalle {
+  codigo: TAX_CODE_ENUM;
+  codigoPorcentaje: string;
+  tarifa: string;
+  baseImponible: string;
+  valor: string;
+}
+ interface InfoAdicional {
+  campoAdicional: CampoAdicional[];
+}
+
+ interface CampoAdicional {
+  $: {
+    nombre: string;
+  };
+  _: string;
+}`}
+        />
+      </div>
+    </div>
+  </section>
+</DocsLayout>

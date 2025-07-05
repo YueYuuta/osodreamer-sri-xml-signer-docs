@@ -1,0 +1,100 @@
+---
+import DocsLayout from "../../layouts/Layout.astro";
+import { FileText } from "lucide-static";
+import CodeBlock from "../../components/CodeBlock.astro";
+
+const ejemplo = `import { generateXmlInvoice } from "osodreamer-sri-xml-signer";
+import * as fs from "fs";
+
+const response = await generateXmlInvoice({
+  infoTributaria: {
+    ambiente: "1",
+    razonSocial: "Mi Empresa",
+    nombreComercial: "Comercial XYZ",
+    ruc: "1234567890001",
+    estab: "001",
+    ptoEmi: "001",
+    secuencial: "000000123",
+    dirMatriz: "Av. Principal 123"
+  }
+  // ver estructura del modelo...
+});
+
+const { generatedXml } = response;
+fs.writeFileSync("./comprobante.xml", generatedXml);`;
+---
+
+<DocsLayout title="Generador XML ">
+  <section class="mb-12 text-center max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold text-white mb-3">Generador XML</h1>
+    <p class="text-zinc-400 text-base">
+      Aprende a generar comprobantes electrónicos tipo factura en formato XML
+      conforme al Anexo 3 del SRI.
+    </p>
+  </section>
+
+  <section class="mb-24 w-full px-4">
+    <div
+      class="bg-zinc-900 border border-zinc-800 p-6 sm:p-8 rounded-2xl w-full max-w-full sm:max-w-3xl mx-auto shadow-md"
+    >
+      <!-- Uso básico -->
+      <div class="flex items-start gap-3 mb-4">
+        <span class="text-indigo-400 w-5 h-5 mt-1"><FileText /></span>
+        <h2 class="text-lg font-semibold text-white">Uso básico</h2>
+      </div>
+
+      <CodeBlock code={ejemplo} filename="generar.ts" language="ts" />
+
+      <!-- Compatibilidad -->
+      <hr class="my-8 border-zinc-700" />
+
+      <div
+        class="text-sm text-zinc-400 text-left bg-zinc-800/40 p-6 rounded-xl"
+      >
+        <h3 class="text-base font-semibold text-white mb-4">
+          Compatibilidad y Alcance
+        </h3>
+
+        <p class="mb-4">
+          Este generador crea exclusivamente <strong class="text-white"
+            >facturas electrónicas</strong
+          > conforme al
+          <strong class="text-white">ANEXO 3 - VERSIÓN 1.1.0</strong> del SRI.
+        </p>
+
+        <p class="font-medium text-zinc-300 mb-2">
+          Soporte adicional (opcional):
+        </p>
+
+        <ul
+          class="list-disc list-inside text-sm text-zinc-400 pl-4 space-y-1 mb-6"
+        >
+          <li>
+            <strong class="text-white">ANEXO 21</strong> — Para agentes de retención
+          </li>
+          <li>
+            <strong class="text-white">ANEXO 22</strong> — Para contribuyentes RIMPE
+          </li>
+        </ul>
+
+        <div
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-start gap-4 mt-4"
+        >
+          <a
+            href="/docs/modelo-datos/factura"
+            class="inline-flex items-center h-10 px-4 border border-indigo-500 text-indigo-400 rounded-md hover:bg-indigo-950 transition text-sm font-medium"
+          >
+            Ver estructura del modelo
+          </a>
+
+          <a
+            href="/docs/firmador"
+            class="px-6 h-10 inline-flex items-center justify-center rounded-md bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-medium transition"
+          >
+            Ir al firmador XML
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocsLayout>
