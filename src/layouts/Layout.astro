@@ -8,6 +8,11 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href={`${import.meta.env.BASE_URL}osodreamer.png`}
+    />
     <title>{title}</title>
   </head>
   <body class="bg-zinc-950 text-white font-sans min-h-screen flex">
@@ -20,7 +25,7 @@ const currentPath = Astro.url.pathname;
         <div class="flex justify-between items-center mb-6 md:block gap-4">
           <div class="flex items-center">
             <img
-              src="/osodreamer.png"
+              src="/osodreamer-sri-xml-signer-docs/osodreamer.png"
               alt="osodreamer logo"
               class="w-12 h-20 object-contain mt-4"
             />
