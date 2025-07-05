@@ -1,17 +1,18 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+// astro.config.mjs
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 
-import tailwindcss from '@tailwindcss/vite';
-
-// https://astro.build/config
 export default defineConfig({
-   markdown: {
+  site: "https://yueyuuta.github.io/osodreamer-sri-xml-signer-docs/",
+  base: "/osodreamer-sri-xml-signer-docs/",
+
+  markdown: {
     shikiConfig: {
-      theme: 'dracula', // o 'github-dark', 'nord', etc.
+      theme: "dracula",
     },
   },
 
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });
