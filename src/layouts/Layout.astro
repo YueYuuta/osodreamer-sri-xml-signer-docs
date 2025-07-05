@@ -39,32 +39,32 @@ const currentPath = Astro.url.pathname;
 
         <nav class="flex flex-col gap-2 text-sm text-zinc-300">
           <a
-            href="/docs"
-            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/docs" ? "bg-zinc-800 text-white font-medium" : ""}`}
+            href="/osodreamer-sri-xml-signer-docs/docs"
+            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/osodreamer-sri-xml-signer-docs/docs" ? "bg-zinc-800 text-white font-medium" : ""}`}
           >
             Introducción
           </a>
           <a
-            href="/docs/generar"
-            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/docs/generar" ? "bg-zinc-800 text-white font-medium" : ""}`}
+            href="/osodreamer-sri-xml-signer-docs/docs/generar"
+            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/osodreamer-sri-xml-signer-docs/docs/generar" ? "bg-zinc-800 text-white font-medium" : ""}`}
           >
             Generador XML
           </a>
           <a
-            href="/docs/firmador"
-            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/docs/firmador" ? "bg-zinc-800 text-white font-medium" : ""}`}
+            href="/osodreamer-sri-xml-signer-docs/docs/firmador"
+            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/osodreamer-sri-xml-signer-docs/docs/firmador" ? "bg-zinc-800 text-white font-medium" : ""}`}
           >
             Firmador
           </a>
           <a
-            href="/docs/validador"
-            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/docs/validador" ? "bg-zinc-800 text-white font-medium" : ""}`}
+            href="/osodreamer-sri-xml-signer-docs/docs/validador"
+            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/osodreamer-sri-xml-signer-docs/docs/validador" ? "bg-zinc-800 text-white font-medium" : ""}`}
           >
             Validador
           </a>
           <a
-            href="/docs/autorizador"
-            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/docs/autorizador" ? "bg-zinc-800 text-white font-medium" : ""}`}
+            href="/osodreamer-sri-xml-signer-docs/docs/autorizador"
+            class={`px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${currentPath === "/osodreamer-sri-xml-signer-docs/docs/autorizador" ? "bg-zinc-800 text-white font-medium" : ""}`}
           >
             Autorizador
           </a>
@@ -74,7 +74,9 @@ const currentPath = Astro.url.pathname;
             <button
               type="button"
               class={`w-full flex justify-between items-center px-3 py-2 rounded-lg transition-colors hover:bg-zinc-800 ${
-                currentPath.startsWith("/docs/modelo-datos")
+                currentPath.startsWith(
+                  "/osodreamer-sri-xml-signer-docs/docs/modelo-datos"
+                )
                   ? "bg-zinc-800 text-white font-medium"
                   : "text-zinc-300"
               }`}
@@ -102,9 +104,10 @@ const currentPath = Astro.url.pathname;
               data-open="false"
             >
               <a
-                href="/docs/modelo-datos/factura"
+                href="/osodreamer-sri-xml-signer-docs/docs/modelo-datos/factura"
                 class={`px-3 py-1.5 rounded-md transition-colors hover:bg-zinc-800 ${
-                  currentPath === "/docs/modelo-datos/factura"
+                  currentPath ===
+                  "/osodreamer-sri-xml-signer-docs/docs/modelo-datos/factura"
                     ? "bg-zinc-800 text-white font-medium"
                     : "text-zinc-400"
                 }`}
@@ -112,9 +115,10 @@ const currentPath = Astro.url.pathname;
                 Generador
               </a>
               <a
-                href="/docs/modelo-datos/firmador"
+                href="/osodreamer-sri-xml-signer-docs/docs/modelo-datos/firmador"
                 class={`px-3 py-1.5 rounded-md transition-colors hover:bg-zinc-800 ${
-                  currentPath === "/docs/modelo-datos/firmador"
+                  currentPath ===
+                  "/osodreamer-sri-xml-signer-docs/docs/modelo-datos/firmador"
                     ? "bg-zinc-800 text-white font-medium"
                     : "text-zinc-400"
                 }`}
@@ -122,9 +126,10 @@ const currentPath = Astro.url.pathname;
                 Firmador
               </a>
               <a
-                href="/docs/modelo-datos/validador"
+                href="/osodreamer-sri-xml-signer-docs/docs/modelo-datos/validador"
                 class={`px-3 py-1.5 rounded-md transition-colors hover:bg-zinc-800 ${
-                  currentPath === "/docs/modelo-datos/validador"
+                  currentPath ===
+                  "/osodreamer-sri-xml-signer-docs/docs/modelo-datos/validador"
                     ? "bg-zinc-800 text-white font-medium"
                     : "text-zinc-400"
                 }`}
@@ -132,9 +137,10 @@ const currentPath = Astro.url.pathname;
                 Validador
               </a>
               <a
-                href="/docs/modelo-datos/autorizador"
+                href="/osodreamer-sri-xml-signer-docs/docs/modelo-datos/autorizador"
                 class={`px-3 py-1.5 rounded-md transition-colors hover:bg-zinc-800 ${
-                  currentPath === "/docs/modelo-datos/autorizador"
+                  currentPath ===
+                  "/osodreamer-sri-xml-signer-docs/docs/modelo-datos/autorizador"
                     ? "bg-zinc-800 text-white font-medium"
                     : "text-zinc-400"
                 }`}
@@ -204,8 +210,9 @@ const currentPath = Astro.url.pathname;
                 rel="noopener"
                 class="hover:text-white transition">GitHub</a
               >
-              <a href="/docs" class="hover:text-white transition"
-                >Documentación</a
+              <a
+                href="/osodreamer-sri-xml-signer-docs/docs"
+                class="hover:text-white transition">Documentación</a
               >
               <a
                 href="mailto:osodreamer2023@gmail.com"
