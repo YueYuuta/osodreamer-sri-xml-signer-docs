@@ -5,7 +5,7 @@ import CodeBlock from "../../components/CodeBlock.astro";
 
 const ejemplo = `import { authorizeXml } from "osodreamer-sri-xml-signer";
 const claveAcceso = "clave de acceso del comprobante";
- const authorizedXmlResponse = await authorizeXml({claveAcceso, env:"test"}); // "test" o "prod"
+ const authorizedXmlResponse = await authorizeXml({claveAcceso, env:"test"}); 
 
 console.log(authorizedXmlResponse);`;
 ---
@@ -48,10 +48,7 @@ console.log(authorizedXmlResponse);`;
             Recibe el estado <code>AUTORIZADO</code> o <code>NO AUTORIZADO</code
             >
           </li>
-          <li>
-            Devuelve el XML autorizado (en texto o base64) y los mensajes
-            asociados
-          </li>
+          <li>Devuelve el XML autorizado y los mensajes asociados</li>
           <li>
             Funciona para ambientes de <code>pruebas</code> y <code
               >producción</code

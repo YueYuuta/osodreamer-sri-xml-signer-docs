@@ -22,9 +22,9 @@ fs.writeFileSync("./comprobante_firmado.xml", signedXml);`;
   <section class="mb-12 text-center max-w-2xl mx-auto">
     <h1 class="text-3xl font-bold text-white mb-3">Firmador XML</h1>
     <p class="text-zinc-400 text-base">
-      Aprende a firmar digitalmente comprobantes electrónicos usando
-      certificados <code>.p12</code> y el estándar <strong>XAdES-BES</strong>,
-      conforme a los requisitos del SRI.
+      Firma digitalmente comprobantes electrónicos usando certificados
+      <code>.p12</code> y el estándar <strong>XAdES-BES</strong>, conforme a los
+      requisitos del <strong>SRI</strong>.
     </p>
   </section>
 
@@ -41,6 +41,35 @@ fs.writeFileSync("./comprobante_firmado.xml", signedXml);`;
 
       <hr class="my-8 border-zinc-700" />
 
+      <div class="mt-10 bg-zinc-900 border border-zinc-800 p-5 rounded-xl">
+        <h3 class="text-base font-semibold text-white mb-3">
+          🔐 Soporte de certificados
+        </h3>
+        <p class="text-sm text-zinc-400 mb-2">
+          Actualmente, el firmador es compatible con certificados emitidos por
+          las siguientes entidades reconocidas en Ecuador:
+        </p>
+        <ul
+          class="list-disc list-inside text-sm text-zinc-400 pl-4 space-y-1 mb-4"
+        >
+          <li><strong>Security Data</strong></li>
+          <li><strong>Banco Central del Ecuador</strong></li>
+          <li><strong>Uanataca</strong></li>
+        </ul>
+        <p class="text-sm text-zinc-400">
+          ¿Tu certificado fue emitido por otra entidad? Escríbeme para evaluar
+          su integración y brindarte soporte personalizado.
+        </p>
+        <p class="text-sm text-indigo-400 mt-2">
+          <a
+            href="mailto:osodreamer2023@gmail.com"
+            class="underline hover:text-indigo-300 transition"
+          >
+            Contáctame aquí
+          </a>
+        </p>
+      </div>
+      <hr class="my-8 border-zinc-700" />
       <div
         class="text-sm text-zinc-400 text-left bg-zinc-800/40 p-6 rounded-xl"
       >

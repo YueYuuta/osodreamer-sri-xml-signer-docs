@@ -9,7 +9,7 @@ import * as fs from "fs";
 const xml = fs.readFileSync("./comprobante_firmado.xml");
 
 
-const validatedXmlResponse = await validateXml({ xml, env: "test" }); // "test" o "prod"
+const validatedXmlResponse = await validateXml({ xml, env: "test" });
 
 console.log(validatedXmlResponse);`;
 ---

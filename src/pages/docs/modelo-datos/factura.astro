@@ -217,8 +217,8 @@ enum IMPUESTO_A_RETENER_ENUM {
           language="ts"
           filename="ResponseGenerateXmlModel.ts"
           code={`interface ResponseGenerateXmlModel {
-  generatedXml: string; // XML como string, listo para firmar o enviar
-  invoiceJson: InvoiceSriBuilder; // Estructura JSON equivalente al XML
+  generatedXml: string; 
+  invoiceJson: InvoiceSriBuilder; 
 }
 
  interface InvoiceSriBuilder {
@@ -246,7 +246,7 @@ enum IMPUESTO_A_RETENER_ENUM {
 
   codigoPorcentaje: CODIGO_RETENCION_ENUM;
 
-  tarifa: string; //TODO: TIENE QUE TENER MAX 4 2 ENTEROS Y DOS DECIMALES
+  tarifa: string; 
 
   valor: string;
 }
